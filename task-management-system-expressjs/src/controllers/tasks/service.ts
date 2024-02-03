@@ -9,7 +9,7 @@ export const getAll = async (
   try {
     return res.send(await Task.findAll());
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -17,7 +17,7 @@ export const get = async (req: AuthenticatedRequest, res: express.Response) => {
   try {
     return res.send(await Task.findByPk(req.params.id));
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -28,7 +28,7 @@ export const create = async (
   try {
     return res.send(await Task.create({ ...req.body }));
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -41,7 +41,7 @@ export const update = async (
       await Task.update({ ...req.body }, { where: { id: req.params.id } })
     );
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -52,6 +52,6 @@ export const remove = async (
   try {
     return res.send(await Task.destroy({ where: { id: req.params.id } }));
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };

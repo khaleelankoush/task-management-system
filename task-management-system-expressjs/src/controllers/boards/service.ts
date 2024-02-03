@@ -23,7 +23,7 @@ export const getAll = async (
       })
     );
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -31,7 +31,7 @@ export const get = async (req: AuthenticatedRequest, res: express.Response) => {
   try {
     return res.send(await Board.findByPk(req.params.id));
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -50,7 +50,7 @@ export const create = async (
     });
     return res.send(board);
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -66,7 +66,7 @@ export const update = async (
       )
     );
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -81,6 +81,6 @@ export const remove = async (
       })
     );
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };

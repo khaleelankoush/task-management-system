@@ -13,7 +13,7 @@ export const getAll = async (
       await Status.findAll({ where: { board_id: req.query.board_id } })
     );
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -21,7 +21,7 @@ export const get = async (req: AuthenticatedRequest, res: express.Response) => {
   try {
     return res.send(await Status.findByPk(req.params.id));
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -32,7 +32,7 @@ export const create = async (
   try {
     return res.send(await Status.create({ ...req.body }));
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -54,7 +54,7 @@ export const update = async (
       await Status.update({ ...req.body }, { where: { id: req.params.id } })
     );
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
 
@@ -66,6 +66,6 @@ export const remove = async (
     checkUserID(+req.params.id, +req.user.id);
     return res.send(await Status.destroy({ where: { id: req.params.id } }));
   } catch (error) {
-    res.status(400).send({ message: 'Something went wrong!' });
+    res.status(400).send({ message: error.message });
   }
 };
